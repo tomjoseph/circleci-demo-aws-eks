@@ -6,9 +6,9 @@ orbs:
   kubernetes: circleci/kubernetes@0.3.0
 
 executors:
-  python:
+  python3:
     docker:
-      - image: cimg/python:3.9-browsers
+      - image: cimg/python:3.10-browsers
 
 jobs:
   deploy-application:
@@ -133,10 +133,7 @@ workflows:
           # Uncomment if the repository does not yet exist
           #create-repo: true
       - aws-eks/create-cluster:
-          executors:
-            python:
-              docker:
-                - image: cimg/python:3.9-browsers
+          executor: python3
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
           show-eksctl-command: true
