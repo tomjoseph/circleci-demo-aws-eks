@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-eks: circleci/aws-eks@0.2.0
+  #aws-ecr: circleci/aws-ecr@3.1.0
   aws-ecr: circleci/aws-ecr@7.3.0
   kubernetes: circleci/kubernetes@0.3.0
 
@@ -116,16 +117,16 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - aws-ecr/build-and-push-image:
+      - aws-ecr/build_and_push_image:
+          name: build-and-push-image
           account-url: AWS_ECR_URL
-          no-output-timeout: 20m
-          path: ~/project/demo_app
           region: AWS_DEFAULT_REGION
           repo: eks_orb_demo_app
-          skip-when-tags-exist: false
-          tag: 'latest,eks_orb_demo_app,${CIRCLE_SHA1}'
+          dockerfile: ~/project/demo_app/Dockerfile
+          path: ~/project/demo_app
+          tag: ${CIRCLE_SHA1}
           # Uncomment if the repository does not yet exist
-          # create-repo: true
+          create-repo: true
       - aws-eks/create-cluster:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
