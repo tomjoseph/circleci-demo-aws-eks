@@ -118,10 +118,10 @@ workflows:
     jobs:
       - aws-ecr/build-and-push-image:
           name: build-and-push-image
-          account-url: $AWS_ECR_URL
+          account-url: AWS_ECR_URL
           no-output-timeout: 20m
           path: ~/project/demo_app
-          region: $AWS_DEFAULT_REGION
+          region: AWS_DEFAULT_REGION
           repo: eks_orb_demo_app
           skip-when-tags-exist: false
           tag: 'latest,eks_orb_demo_app,${CIRCLE_SHA1}'
