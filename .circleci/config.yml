@@ -126,7 +126,7 @@ workflows:
           skip-when-tags-exist: false
           tag: 'latest,eks_orb_demo_app,${CIRCLE_SHA1}'
           # Uncomment if the repository does not yet exist
-          # create-repo: true
+          create-repo: true
       - aws-eks/create-cluster:
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
