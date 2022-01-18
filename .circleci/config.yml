@@ -94,7 +94,7 @@ jobs:
             sleep 180
             curl -s --retry 10 "http://$EXTERNAL_IP" | grep "<< parameters.expected-version-info >>"
   undeploy-application:
-    executor: aws-eks/python3
+    executor: python3
     parameters:
       cluster-name:
         description: |
