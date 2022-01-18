@@ -12,7 +12,7 @@ executors:
 
 jobs:
   deploy-application:
-    executor: aws-eks/python3
+    executor: python3
     parameters:
       cluster-name:
         description: |
@@ -140,7 +140,6 @@ workflows:
           requires:
             - build-and-push-image
       - deploy-application:
-          executor: python3
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
           docker-image-name: "${AWS_ECR_URL}/eks_orb_demo_app:${CIRCLE_SHA1}"
