@@ -159,6 +159,7 @@ workflows:
           requires:
             - test-application
       - aws-eks/delete-cluster:
+          executor: python3
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
           wait: true
