@@ -133,6 +133,10 @@ workflows:
           # Uncomment if the repository does not yet exist
           #create-repo: true
       - aws-eks/create-cluster:
+          executors:
+            python:
+              docker:
+                - image: cimg/python:3.9-browsers
           cluster-name: eks-orb-demo-app-deployment
           aws-region: $AWS_DEFAULT_REGION
           show-eksctl-command: true
